@@ -5,7 +5,6 @@ def split_number(numbers):
     return arrnum
 
 def poscontains(position, string, char):
-    #position = int(position) - 1
     if char == string[int(position)]:
         return True
     else:
@@ -24,13 +23,8 @@ def apply_rules(pos1, pos2):
         return False
 
 def valid_password(positions, string, char):
-    pos1 = poscontains(positions[0], string, char)
-    pos2 = poscontains(positions[1], string, char)
-    rule = apply_rules(pos1, pos2)
-    print(pos1, pos2, rule, positions, string[pos1], string[pos2], string, char)
-    if rule:
+    if apply_rules(poscontains(positions[0], string, char), poscontains(positions[1], string, char)):
         return True
-
 
 with open('input_day2.txt', newline='') as file:
     lines = file.readlines()
@@ -48,7 +42,5 @@ with open('input_day2.txt', newline='') as file:
 
         if valid_password(highlow, split[1], letter):
             validpassword.append(split[1])
-
-
 
 print(len(validpassword))
