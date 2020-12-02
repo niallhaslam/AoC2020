@@ -1,4 +1,4 @@
-
+from operator import xor
 
 def split_number(numbers):
     arrnum = numbers.split("-")
@@ -10,20 +10,8 @@ def poscontains(position, string, char):
     else:
         return False
 
-def apply_rules(pos1, pos2):
-    if pos1 is True and pos2 is False:
-        return True
-    if pos1 is False and pos2 is True:
-        return True
-    if pos1 is True and pos2 is True:
-        return False
-    if pos1 is False and pos2 is False:
-        return False
-    else:
-        return False
-
 def valid_password(positions, string, char):
-    if apply_rules(poscontains(positions[0], string, char), poscontains(positions[1], string, char)):
+    if xor(poscontains(positions[0], string, char), poscontains(positions[1], string, char)):
         return True
 
 with open('input_day2.txt', newline='') as file:
