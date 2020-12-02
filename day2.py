@@ -10,10 +10,6 @@ def poscontains(position, string, char):
     else:
         return False
 
-def valid_password(positions, string, char):
-    if xor(poscontains(positions[0], string, char), poscontains(positions[1], string, char)):
-        return True
-
 with open('input_day2.txt', newline='') as file:
     lines = file.readlines()
     validpassword = []
@@ -27,8 +23,7 @@ with open('input_day2.txt', newline='') as file:
         #if (count <= int(highlow[1])) & (count >= int(highlow[0])):
         #    print(count)
         #    validpassword.append(split[1])
-
-        if valid_password(highlow, split[1], letter):
+        if xor(poscontains(highlow[0], split[1], letter), poscontains(highlow[1], split[1], letter)):
             validpassword.append(split[1])
 
 print(len(validpassword))
